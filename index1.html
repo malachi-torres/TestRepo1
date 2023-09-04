@@ -2,18 +2,120 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Malachi Torres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&family=Saira:wght@300;400;500;800&display=swap" rel="stylesheet">
 
     <style>
         * {
             padding: 0;
             margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: rgb(0, 0, 68);
+        }
+        h2 {
+            font-family: 'Saira', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 0 0 1px transparent, 4px 4px 4px rgb(0, 0, 0);
             
+
+        }
+        body >img {
+            object-fit: cover;
+            position: absolute;
+            opacity: 80%;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            
+        }
+        section {
+            display: grid;
+            place-items: center;
+            position: absolute;
+            inset: 0;
+            overflow-y: scroll;
+        }
+        section div {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: auto;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+
+        }
+        section > div {
+            padding: 100px 10px;
+
+        }
+        section div img {
+            width: 125px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            box-shadow: 0 0 8px 1px lightblue;
+        }
+        a {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            padding: 10px;
+            text-decoration: none;
+            gap: 20px;
+            align-items: center;
+            border-radius: 4px;
+            background-color: rgba(179, 213, 235, 0.526); 
+            color: rgb(2, 0, 106);
+            transition-duration: 200ms;
+
+        }
+        a:hover {
+            background: rgb(0, 6, 45);
+            color: white;
+
+        }
+        a i {
+            font-size: 1.3em;
+
         }
     </style>
 </head>
 <body>
-    
+    <img src="https://images.unsplash.com/photo-1580536793208-117fdb20ffc1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="bg"/>
+    <section>
+        <div>
+            <img src="https://media.licdn.com/dms/image/D5603AQEv0mD8fReoqQ/profile-displayphoto-shrink_200_200/0/1678672272709?e=1699488000&v=beta&t=5oloMQ6ttt3rSR8iExRkjgsbU0NSWHdqz8CR8_0dEKM" alt="dp">
+            <h2>Malachi Torres</h2>
+            <div>
+                <a href="www.linkedin.com/in/torres-malachi">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                    <p>LinkedIn</p>
+                </a>
+                <a href="https://www.instagram.com/55_dexter/">
+                    <i class="fa-brands fa-instagram"></i>
+                    <p>Instagram</p>
+                </a>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

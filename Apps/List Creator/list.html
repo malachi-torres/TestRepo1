@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Creator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@100;200;300;400;500;600;700;800;900&family=Encode+Sans:wght@100;200;300;400;500;600;700;800;900&family=Foldit:wght@100;200;300;400;500;600;700;800;900&family=Smooch+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        html {
+            
+            font-family: 'Smooch Sans', sans-serif;
+        }
+        h1{
+            font-family: 'Foldit', sans-serif;
+        }
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+            transition-duration: 320ms;
+
+        }
+        body {
+            min-height: 100vh;
+            background: rgb(0, 8, 56);
+            color: lightblue;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 22px;
+            
+        }
+        header, main, footer {
+            width: 800px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+        header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .plus-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .plus-icon:hover {
+            color: coral;
+
+        }
+        #enterItem {
+            display: none;
+
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            flex: 1;
+        }
+        #enterItem form {
+            display: flex;
+            align-items: stretch;
+            border: 1px solid lightblue;
+            position: relative;
+        }
+        #enterItem form:focus-within {
+            border-color: coral;
+        }
+        #enterItem input {
+            background: transparent;
+            outline: none;
+            padding: 10px;
+            color: lightblue;
+            flex: 1;
+            border: none;
+
+        }
+        #enterItem button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: lightblue;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            color: rgb(0, 8, 56);
+            font-family: 'Smooch Sans', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        #enterItem button:hover {
+            background: rgb(0, 8, 56);
+            color: lightblue;
+        }
+        #items {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+        }
+        .newItem {
+            display: flex;
+            align-items: center;
+        }
+        .newItem p {
+            flex: 1;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+
+        }
+        .actions i:hover {
+            transform: scale(1.1);
+            color: coral;
+        }
+        footer {
+            display: grid;
+            place-items: center;
+            color: lightblue;
+            
+        }
+        footer a {
+            color: inherit;
+            text-decoration: none;
+        }
+        footer i {
+            cursor: pointer;
+        }
+        footer i:hover {
+            transform: scale(1.1) rotate(15deg);
+            color: coral;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>List Creator</h1>
+        <i id="showEnterItem" class="fa-solid fa-plus plus-icon"></i>
+    </header>
+    <main>
+        <section id="enterItem">
+            <form action="">
+                <input type="text" id="textInput" placeholder="Add item..."/>
+                <button type="input" id="add">Add</button>
+            </form>
+        </section>
+        <section id="items">
+
+        </section>
+    </main>
+    <footer>
+        <a href="https://github.com/malachi-torres" target="_blank">
+            <i class="fa-brands fa-github"></i>
+        </a>
+        
+    </footer>
+</body>
+<script>
+    let items = []
+
+    const itemsList = document.getElementById('items')
+    const itemInput = document.getElementById('textInput')
+    const inputBtn = document.getElementById('add')
+    const showEnterItem = document.getElementById('showEnterItem')
+    const enterItem = document.getElementById('enterItem')
+
+    function showItemInput() {
+        enterItem.style.display = 'block'
+    }
+
+    showEnterItem.addEventListener('click', showItemInput)
+
+    function addItem(e) {
+        e.preventDefault()
+        let textValue = itemInput.value
+        items.push(textValue)
+        itemsList.innerHTML = ''
+        renderItems()
+        itemInput.value = ''
+        enterItem.style.display = 'none'
+    }
+    inputBtn.addEventListener('click', addItem)
+
+    function removeItem(index) {
+        items = items.filter((item, i) => {
+            return i === index ? false : true
+        })
+        itemsList.innerHTML = ''
+        renderItems()
+    }
+
+    function editItem(index) {
+        const currElementText = document.querySelector(`#items div:nth-child(${index + 1}) p`).innerText
+        const splicedText = currElementText.slice(3)
+        removeItem(index)
+        showItemInput()
+        itemInput.value = splicedText
+        
+    }
+    
+    function renderItems() {
+        items.forEach((item, i) => {
+            let currentHTML = itemsList.innerHTML
+            let newHTML = (
+                `<div class="newItem">
+                    <p>${i + 1}. ${item}</p>
+                    <div class="actions">
+                        <i onclick="editItem(${i})" class="fa-solid fa-pencil"></i>
+                        <i onclick="removeItem(${i})" class="fa-solid fa-eraser"></i>
+                        
+                    </div>
+                </div>`
+            ) 
+
+            let amendedHTML = currentHTML + newHTML
+            itemsList.innerHTML = amendedHTML
+        })
+    }
+
+    renderItems()
+</script>
+</html>
